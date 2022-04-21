@@ -107,4 +107,19 @@ public class GiveTest {
 
         Assert.assertEquals(giveService.getAllGives(null, null, null).size(), 2);
     }
+
+    @Test
+    public void testViewAllGivesWithKeywords() throws BuyNothingException, UnAuthorizedException {
+
+        Give give = new Give("1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
+                new String[]{"20301", "34232"}, true, LocalDateTime.now());
+
+        Give give2 = new Give("2", "give", "Saw Tool", LocalDate.now(), LocalDate.now(),
+                new String[]{"20301", "34232"}, true, LocalDateTime.now());
+
+        giveService.createGive(give, "1");
+        giveService.createGive(give2, "1");
+
+        Assert.assertTrue(giveService.getAllGives("Saw", ""+LocalDate.now(), ""+LocalDate.now()).size() > 0);
+    }
 }

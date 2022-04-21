@@ -63,6 +63,15 @@ public class ThanksTest {
         Assert.assertEquals(thanksService.getAllThanks(null).size(), 1);
     }
 
+    @Test
+    public void testGetAllThanksWithKeyWord() throws BuyNothingException, UnAuthorizedException {
+        Thanks thanks = new Thanks("1", "1", "2", "Thanks for the tyre",
+                LocalDate.now());
+        thanksService.createThanks(thanks, "1");
+
+        Assert.assertTrue(thanksService.getAllThanks("tyre").size()>0);
+    }
+
 
     @Test
     public void testGetAllThanksCreatedByUid() throws BuyNothingException, UnAuthorizedException {

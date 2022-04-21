@@ -16,9 +16,9 @@ public class AccountRepository {
             return Optional.of(new Account());
     }
 
-    public Optional<Account> createAccount(Account account) {
+    public Account createAccount(Account account) {
         accountMap.put(account.getUid(), account);
-        return Optional.of(account);
+        return account;
     }
 
     public Optional<Account> activateAccount(String uid) {

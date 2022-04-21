@@ -27,11 +27,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account createAccount(Account account) throws BuyNothingException {
-        Optional<Account> accountFromRepo = accountRepository.createAccount(account);
-        if (accountFromRepo.isPresent()) {
-            return accountFromRepo.get();
-        }
-        throw new BuyNothingException(404, "Something went wrong");
+        return accountRepository.createAccount(account);
     }
 
     @Override

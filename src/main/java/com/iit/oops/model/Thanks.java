@@ -9,6 +9,16 @@ public class Thanks {
     private String uid;
     private String tid;
 
+    @Override
+    public String toString() {
+        return "Thanks{" +
+                "thank_to='" + thank_to + '\'' +
+                ", description='" + description + '\'' +
+                ", date_created=" + date_created +
+                ", uid='" + uid + '\'' +
+                ", tid='" + tid + '\'' +
+                '}';
+    }
 
     public Thanks(String uid, String tid, String thank_to, String description, LocalDate date_created) {
         this.uid = uid;
