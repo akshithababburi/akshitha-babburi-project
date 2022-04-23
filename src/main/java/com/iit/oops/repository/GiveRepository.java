@@ -37,7 +37,8 @@ public class GiveRepository {
     public Optional<Give> updateGive(Give give, String uid, String gid) throws UnAuthorizedException {
         List<String> giveListAssociatedWithUid = uidGidMap.get(uid);
         if (null != giveListAssociatedWithUid && giveListAssociatedWithUid.contains(gid)) {
-            return Optional.of(giveMap.put(gid, give));
+            giveMap.put(gid, give);
+            return Optional.of(give);
         } else
             throw new UnAuthorizedException(500);
     }

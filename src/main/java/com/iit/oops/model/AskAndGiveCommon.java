@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class AskAndGiveCommon {
+
+    private String uid;
     private String type;
     private String description;
     private LocalDate start_date;
@@ -14,8 +16,9 @@ public class AskAndGiveCommon {
     private LocalDateTime date_created;
     private boolean is_active;
 
-    public AskAndGiveCommon(String type, String description, LocalDate start_date, LocalDate end_date,
+    public AskAndGiveCommon(String uid, String type, String description, LocalDate start_date, LocalDate end_date,
                             String[] extra_zip, boolean is_active, LocalDateTime date_created) {
+        this.uid = uid;
         this.type = type;
         this.description = description;
         this.start_date = start_date;
@@ -26,6 +29,10 @@ public class AskAndGiveCommon {
     }
 
     public AskAndGiveCommon() {
+    }
+    @JsonProperty
+    public String getUid() {
+        return uid;
     }
 
     @JsonProperty

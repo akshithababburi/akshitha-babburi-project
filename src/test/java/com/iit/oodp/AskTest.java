@@ -26,7 +26,7 @@ public class AskTest {
     @Test
     public void testCreateAsk() throws BuyNothingException {
 
-        Ask ask = new Ask("1", "ask", "car tyre", LocalDate.now(), LocalDate.now(),
+        Ask ask = new Ask("1", "1", "ask", "car tyre", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
 
         Assert.assertEquals(askService.createAsk(ask, "1").getAid(), "1");
@@ -35,7 +35,7 @@ public class AskTest {
     @Test
     public void testDeactivateAsk() throws BuyNothingException {
 
-        Ask ask = new Ask("1", "ask", "car tyre", LocalDate.now(), LocalDate.now(),
+        Ask ask = new Ask("1", "1", "ask", "car tyre", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
         askService.createAsk(ask, "1");
         Assert.assertEquals(askService.deactivateAsk("1", "1").isIs_active(), false);
@@ -45,7 +45,7 @@ public class AskTest {
     @Test
     public void testUpdateAsk() throws BuyNothingException {
 
-        Ask ask = new Ask("1", "ask", "car tyre", LocalDate.now(), LocalDate.now(),
+        Ask ask = new Ask("1", "1", "ask", "car tyre", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
         askService.createAsk(ask, "1");
         ask.setDescription("car floor mats");
@@ -56,7 +56,7 @@ public class AskTest {
     @Test
     public void testDeleteAsk() throws BuyNothingException {
 
-        Ask ask = new Ask("1", "ask", "car tyre", LocalDate.now(), LocalDate.now(),
+        Ask ask = new Ask("1", "1", "ask", "car tyre", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
         askService.createAsk(ask, "1");
         askService.deleteAsk("1", "1");
@@ -66,7 +66,7 @@ public class AskTest {
     @Test
     public void testGetAskById() throws BuyNothingException {
 
-        Ask ask = new Ask("1", "ask", "car tyre", LocalDate.now(), LocalDate.now(),
+        Ask ask = new Ask("1", "1", "ask", "car tyre", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
         askService.createAsk(ask, "1");
         Assert.assertEquals(askService.getAskById("1").getDescription(), "car tyre");
@@ -76,7 +76,7 @@ public class AskTest {
     @Test
     public void testGetAskByUId() throws BuyNothingException {
 
-        Ask ask = new Ask("1", "ask", "car tyre", LocalDate.now(), LocalDate.now(),
+        Ask ask = new Ask("1", "1", "ask", "car tyre", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
         askService.createAsk(ask, "1");
         Assert.assertEquals(askService.getAsksByUid("1", true).get(0).getDescription(), "car tyre");
@@ -86,7 +86,7 @@ public class AskTest {
     @Test
     public void testGetAllAsks() throws BuyNothingException {
 
-        Ask ask = new Ask("1", "ask", "car tyre", LocalDate.now(), LocalDate.now(),
+        Ask ask = new Ask("1", "1", "ask", "car tyre", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
         askService.createAsk(ask, "1");
         Assert.assertEquals(askService.getAllAsks().size(), 1);
@@ -96,7 +96,7 @@ public class AskTest {
     @Test
     public void testSearchAsks() throws BuyNothingException {
 
-        Ask ask = new Ask("1", "ask", "car tyre", LocalDate.now(), LocalDate.now(),
+        Ask ask = new Ask("1", "1", "ask", "car tyre", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
         askService.createAsk(ask, "1");
         Assert.assertEquals(askService.searchAsks("car", null, null).size(), 1);

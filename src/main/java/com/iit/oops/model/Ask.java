@@ -10,9 +10,9 @@ public class Ask extends AskAndGiveCommon {
 
     private String aid;
 
-    public Ask(String aid, String type, String description, LocalDate start_date, LocalDate end_date,
+    public Ask(String aid, String uid, String type, String description, LocalDate start_date, LocalDate end_date,
                String[] extra_zip, boolean is_active, LocalDateTime date_created) {
-        super(type, description, start_date, end_date, extra_zip, is_active, date_created);
+        super(uid, type, description, start_date, end_date, extra_zip, is_active, date_created);
         this.aid = aid;
     }
 
@@ -28,6 +28,7 @@ public class Ask extends AskAndGiveCommon {
     public String toString() {
         return "Ask{" +
                 "aid='" + aid + '\'' +
+                "uid='" + this.getUid() + '\'' +
                 "type='" + this.getType() + '\'' +
                 ", description='" + this.getDescription() + '\'' +
                 ", start_date=" + this.getStart_date() +

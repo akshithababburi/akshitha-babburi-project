@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Produces(MediaType.APPLICATION_JSON)
+@Path("/bn/api")
 public class ThanksResource {
     private final ThanksService thanksService;
 
@@ -26,7 +27,7 @@ public class ThanksResource {
     }
 
 
-    @POST
+    @PUT
     @Path("/accounts/{uid}/thanks/{tid}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Thanks updateThanks(@PathParam("uid") String uid,
@@ -43,8 +44,8 @@ public class ThanksResource {
 
     @GET
     @Path("/thanks")
-    public List<Thanks> getThanks(@QueryParam("keyword") String keyword) throws BuyNothingException {
-        return thanksService.getAllThanks(keyword);
+    public List<Thanks> getThanks(@QueryParam("key") String key) throws BuyNothingException {
+        return thanksService.getAllThanks(key);
     }
 
     @GET

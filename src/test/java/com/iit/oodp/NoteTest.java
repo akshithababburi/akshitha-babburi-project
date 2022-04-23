@@ -38,7 +38,7 @@ public class NoteTest {
                 LocalDate.now());
         noteService.createNote(note);
         note.setDescription("thanks");
-        Assert.assertEquals(noteService.updateNote(note, "1", "give", "1").getDescription(), "thanks");
+        Assert.assertEquals(noteService.updateNote(note, "1").getDescription(), "thanks");
     }
 
 
@@ -62,7 +62,12 @@ public class NoteTest {
         Assert.assertEquals(noteService.getNoteByNid("1").getDescription(), "note");
     }
 
+    @Test
+    public void testGetAllNotes() throws BuyNothingException {
 
-//
-//    Note getNoteByNid(String nid) throws BuyNothingException;
+        Note note = new Note("1", "1", "give", "1", "1", "note",
+                LocalDate.now());
+
+        Assert.assertEquals(noteService.searchNotes("hyderabad").size(), 0);
+    }
 }

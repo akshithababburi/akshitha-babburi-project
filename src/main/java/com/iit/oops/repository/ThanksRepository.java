@@ -50,7 +50,8 @@ public class ThanksRepository {
         List<String> thanksToUidList = thanksCreatedUidMap.get(uid);
         if (null != thanksToUidList && thanksToUidList.contains(tid)) {
             thanks.setTid(tid);
-            return Optional.of(thanksMap.put(tid, thanks));
+            thanksMap.put(tid, thanks);
+            return Optional.of(thanks);
         } else
             throw new UnAuthorizedException(500);
     }

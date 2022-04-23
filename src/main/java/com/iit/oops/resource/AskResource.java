@@ -8,7 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/asks")
+@Path("/bn/api")
 @Produces(MediaType.APPLICATION_JSON)
 public class AskResource {
 
@@ -25,13 +25,13 @@ public class AskResource {
         return askService.createAsk(ask, uid);
     }
 
-//    @GET
-//    @Path("/accounts/{uid}/asks/{aid}/deactivate")
-//    public Ask deactivateAsk(String uid, String aid) throws BuyNothingException {
-//        return askService.deactivateAsk(uid, aid);
-//    }
+    @GET
+    @Path("/accounts/{uid}/asks/{aid}/deactivate")
+    public Ask deactivateAsk(@PathParam("uid") String uid, @PathParam("aid") String aid) throws BuyNothingException {
+        return askService.deactivateAsk(uid, aid);
+    }
 
-    @POST
+    @PUT
     @Path("/accounts/{uid}/asks/{aid}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Ask updateAsk(@PathParam("uid") String uid,
@@ -55,23 +55,17 @@ public class AskResource {
     }
 
     @GET
-    @Path("/asks")
-    public List<Ask> getAsks() throws BuyNothingException {
-        return askService.getAllAsks();
-    }
-
-    @GET
     @Path("/asks/{aid}")
     public Ask getById(@PathParam("aid") String aid) throws BuyNothingException {
         return askService.getAskById(aid);
     }
 
     @GET
-    @Path("/accounts")
-    public List<Ask> searchAsks(@QueryParam("keyword") String keyword,
+    @Path("/asks")
+    public List<Ask> searchAsks(@QueryParam("key") String key,
                                 @QueryParam("start_date") String start_date,
                                 @QueryParam("end_date") String end_date) throws BuyNothingException {
-        return askService.searchAsks(keyword, start_date, end_date);
+        return askService.searchAsks(key, start_date, end_date);
     }
 
 }

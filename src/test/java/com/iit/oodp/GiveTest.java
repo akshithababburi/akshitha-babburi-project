@@ -28,7 +28,7 @@ public class GiveTest {
     @Test
     public void testCreateGive() throws BuyNothingException {
 
-        Give give = new Give("1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
+        Give give = new Give("1", "1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
 
         Assert.assertEquals(giveService.createGive(give, "1").getGid(), "1");
@@ -37,7 +37,7 @@ public class GiveTest {
     @Test
     public void testGetGiveById() throws BuyNothingException {
 
-        Give give = new Give("1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
+        Give give = new Give("1", "1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
 
         giveService.createGive(give, "1");
@@ -48,7 +48,7 @@ public class GiveTest {
     @Test
     public void testDeleteGive() throws BuyNothingException, UnAuthorizedException {
 
-        Give give = new Give("1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
+        Give give = new Give("1", "1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
 
         giveService.createGive(give, "1");
@@ -61,7 +61,7 @@ public class GiveTest {
     @Test
     public void testDeactivateGive() throws BuyNothingException, UnAuthorizedException {
 
-        Give give = new Give("1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
+        Give give = new Give("1", "1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
 
         giveService.createGive(give, "1");
@@ -72,7 +72,7 @@ public class GiveTest {
     @Test
     public void testUpdateGive() throws BuyNothingException, UnAuthorizedException {
 
-        Give give = new Give("1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
+        Give give = new Give("1", "1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
 
         giveService.createGive(give, "1");
@@ -85,7 +85,7 @@ public class GiveTest {
     @Test
     public void testViewMyGives() throws BuyNothingException, UnAuthorizedException {
 
-        Give give = new Give("1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
+        Give give = new Give("1", "1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
 
         giveService.createGive(give, "1");
@@ -96,10 +96,10 @@ public class GiveTest {
     @Test
     public void testViewAllGives() throws BuyNothingException, UnAuthorizedException {
 
-        Give give = new Give("1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
+        Give give = new Give("1", "1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
 
-        Give give2 = new Give("2", "give", "Saw Tool", LocalDate.now(), LocalDate.now(),
+        Give give2 = new Give("2", "1", "give", "Saw Tool", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
 
         giveService.createGive(give, "1");
@@ -111,15 +111,15 @@ public class GiveTest {
     @Test
     public void testViewAllGivesWithKeywords() throws BuyNothingException, UnAuthorizedException {
 
-        Give give = new Give("1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
+        Give give = new Give("1", "1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
 
-        Give give2 = new Give("2", "give", "Saw Tool", LocalDate.now(), LocalDate.now(),
+        Give give2 = new Give("2", "1", "give", "Saw Tool", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
 
         giveService.createGive(give, "1");
         giveService.createGive(give2, "1");
 
-        Assert.assertTrue(giveService.getAllGives("Saw", ""+LocalDate.now(), ""+LocalDate.now()).size() > 0);
+        Assert.assertTrue(giveService.getAllGives("Saw", "" + LocalDate.now(), "" + LocalDate.now()).size() > 0);
     }
 }

@@ -24,6 +24,19 @@ public class Note {
     public Note() {
     }
 
+    @Override
+    public String toString() {
+        return "Note{" +
+                "uid='" + uid + '\'' +
+                ", nid='" + nid + '\'' +
+                ", to_type='" + to_type + '\'' +
+                ", to_user_id='" + to_user_id + '\'' +
+                ", to_id='" + to_id + '\'' +
+                ", description='" + description + '\'' +
+                ", date_created=" + date_created +
+                '}';
+    }
+
     public String getUid() {
         return uid;
     }

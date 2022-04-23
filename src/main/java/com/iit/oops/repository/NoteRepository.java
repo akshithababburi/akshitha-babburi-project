@@ -1,7 +1,10 @@
 package com.iit.oops.repository;
 
+import com.iit.oops.model.Give;
 import com.iit.oops.model.Note;
+import org.apache.commons.lang3.StringUtils;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class NoteRepository {
@@ -26,8 +29,9 @@ public class NoteRepository {
         return Optional.of(note);
     }
 
-    public Optional<Note> updateNote(Note note, String nid, String type, String typeId) {
-        return Optional.of(noteMap.put(nid, note));
+    public Optional<Note> updateNote(Note note, String nid) {
+        noteMap.put(nid, note);
+        return Optional.of(note);
     }
 
     public void deleteNote(String nid) {
@@ -49,5 +53,20 @@ public class NoteRepository {
             return Optional.of(noteMap.get(nid));
         else
             return Optional.of(new Note());
+    }
+
+    public Optional<List<Note>> searchNotes(String keyword) {
+        if (StringUtils.isNotEmpty(keyword)) {
+            List<Note> noteListFromDB = new ArrayList<>(noteMap.values());
+            List<Note> noteListFiltered = new ArrayList<>();
+            if (StringUtils.isNotEmpty(keyword)) {
+                for (Note note : noteListFromDB) {
+                    if (note.toString().contains(keyword))
+                        noteListFiltered.add(note);
+                }
+            }
+            return Optional.of(noteListFiltered);
+        }
+        return Optional.of(new ArrayList<>(noteMap.values()));
     }
 }

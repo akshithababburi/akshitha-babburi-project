@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Produces(MediaType.APPLICATION_JSON)
+@Path("/bn/api")
 public class GiveResource {
 
     private final GiveService giveService;
@@ -31,7 +32,7 @@ public class GiveResource {
         return giveService.deactivateGive(uid, gid);
     }
 
-    @POST
+    @PUT
     @Path("/accounts/{uid}/gives/{gid}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Give updateGive(@PathParam("uid") String uid,
@@ -55,10 +56,10 @@ public class GiveResource {
 
     @GET
     @Path("/gives")
-    public List<Give> getGives(@QueryParam("keyword") String keyword,
+    public List<Give> getGives(@QueryParam("key") String key,
                                @QueryParam("start_date") String start_date,
                                @QueryParam("end_date") String end_date) throws BuyNothingException {
-        return giveService.getAllGives(keyword, start_date, end_date);
+        return giveService.getAllGives(key, start_date, end_date);
     }
 
     @GET

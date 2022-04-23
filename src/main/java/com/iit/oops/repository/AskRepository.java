@@ -4,6 +4,7 @@ import com.iit.oops.exception.BuyNothingException;
 import com.iit.oops.model.Ask;
 import org.apache.commons.lang3.StringUtils;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class AskRepository {
@@ -49,7 +50,8 @@ public class AskRepository {
     public Optional<Ask> updateAsk(Ask ask, String uid, String aid) throws BuyNothingException {
         List<String> askListAssociatedWithUid = uidAidMap.get(uid);
         if (null != askListAssociatedWithUid && askListAssociatedWithUid.contains(aid)) {
-            return Optional.of(askMap.put(aid, ask));
+            askMap.put(aid, ask);
+            return Optional.of(ask);
         } else
             throw new BuyNothingException(500);
     }
@@ -91,25 +93,25 @@ public class AskRepository {
                         askListFiltered.add(ask);
                 }
             }
-//            if (StringUtils.isNotEmpty(start_date)) {
-//                if (askListFiltered.isEmpty())
-//                    askListFiltered = askListFromDb;
-//                for (Ask ask : askListFiltered) {
-//                    LocalDate startDate = LocalDate.parse(start_date);
-//                    if (ask.getStart_date().isAfter(startDate))
-//                        askListFiltered.add(ask);
-//                }
-//            }
-//
-//            if (StringUtils.isNotEmpty(end_date)) {
-//                if (askListFiltered.isEmpty())
-//                    askListFiltered = askListFromDb;
-//                for (Ask ask : askListFiltered) {
-//                    LocalDate endDate = LocalDate.parse(end_date);
-//                    if (ask.getEnd_date().isBefore(endDate))
-//                        askListFiltered.add(ask);
-//                }
-//            }
+            if (StringUtils.isNotEmpty(start_date)) {
+                if (askListFiltered.isEmpty())
+                    askListFiltered = askListFromDb;
+                for (Ask ask : askListFiltered) {
+                    LocalDate startDate = LocalDate.parse(start_date);
+                    if (ask.getStart_date().isAfter(startDate))
+                        askListFiltered.add(ask);
+                }
+            }
+
+            if (StringUtils.isNotEmpty(end_date)) {
+                if (askListFiltered.isEmpty())
+                    askListFiltered = askListFromDb;
+                for (Ask ask : askListFiltered) {
+                    LocalDate endDate = LocalDate.parse(end_date);
+                    if (ask.getEnd_date().isBefore(endDate))
+                        askListFiltered.add(ask);
+                }
+            }
             return Optional.of(askListFiltered);
         }
         return Optional.of(new ArrayList<>(askMap.values()));

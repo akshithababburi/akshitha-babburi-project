@@ -10,9 +10,9 @@ public class Give extends AskAndGiveCommon {
 
     private String gid;
 
-    public Give(String gid, String type, String description, LocalDate start_date, LocalDate end_date,
+    public Give(String gid, String uid, String type, String description, LocalDate start_date, LocalDate end_date,
                 String[] extra_zip, boolean is_active, LocalDateTime date_created) {
-        super(type, description, start_date, end_date, extra_zip, is_active, date_created);
+        super(uid, type, description, start_date, end_date, extra_zip, is_active, date_created);
         this.gid = gid;
 
     }
@@ -24,6 +24,7 @@ public class Give extends AskAndGiveCommon {
     public String toString() {
         return "Give{" +
                 "gid='" + gid + '\'' +
+                "uid='" + this.getUid() + '\'' +
                 "type='" + this.getType() + '\'' +
                 ", description='" + this.getDescription() + '\'' +
                 ", start_date=" + this.getStart_date() +

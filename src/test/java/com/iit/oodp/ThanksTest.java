@@ -69,7 +69,7 @@ public class ThanksTest {
                 LocalDate.now());
         thanksService.createThanks(thanks, "1");
 
-        Assert.assertTrue(thanksService.getAllThanks("tyre").size()>0);
+        Assert.assertTrue(thanksService.getAllThanks("tyre").size() > 0);
     }
 
 
