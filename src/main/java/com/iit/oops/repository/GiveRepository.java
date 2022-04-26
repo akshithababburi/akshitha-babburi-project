@@ -1,6 +1,6 @@
 package com.iit.oops.repository;
 
-import com.iit.oops.exception.UnAuthorizedException;
+import com.iit.oops.exception.BuyNothingException;
 import com.iit.oops.model.Give;
 import org.apache.commons.lang3.StringUtils;
 
@@ -22,6 +22,10 @@ public class GiveRepository {
 
 
     public Optional<Give> createGive(Give give, String uid) {
+
+        if (StringUtils.isBlank(give.getGid()))
+            give.setGid("" + giveMap.size() + 1);
+
         List<String> gidList = null;
 
         if (uidGidMap.containsKey(uid))
@@ -34,33 +38,33 @@ public class GiveRepository {
         return Optional.of(give);
     }
 
-    public Optional<Give> updateGive(Give give, String uid, String gid) throws UnAuthorizedException {
+    public Optional<Give> updateGive(Give give, String uid, String gid) throws BuyNothingException {
         List<String> giveListAssociatedWithUid = uidGidMap.get(uid);
         if (null != giveListAssociatedWithUid && giveListAssociatedWithUid.contains(gid)) {
             giveMap.put(gid, give);
             return Optional.of(give);
         } else
-            throw new UnAuthorizedException(500);
+            throw new BuyNothingException("500");
     }
 
-    public Optional<Give> deactivateGive(String uid, String gid) throws UnAuthorizedException {
+    public Optional<Give> deactivateGive(String uid, String gid) throws BuyNothingException {
         List<String> giveListAssociatedWithUid = uidGidMap.get(uid);
         if (null != giveListAssociatedWithUid && giveListAssociatedWithUid.contains(gid)) {
             Give give = giveMap.get(gid);
             give.setIs_active(false);
             return Optional.of(giveMap.put(gid, give));
         } else
-            throw new UnAuthorizedException(500);
+            throw new BuyNothingException("500");
     }
 
-    public void deleteGive(String uid, String gid) throws UnAuthorizedException {
+    public void deleteGive(String uid, String gid) throws BuyNothingException {
         List<String> giveListAssociatedWithUid = uidGidMap.get(uid);
         if (null != giveListAssociatedWithUid && giveListAssociatedWithUid.contains(gid)) {
             giveListAssociatedWithUid.remove(gid);
             uidGidMap.put(uid, giveListAssociatedWithUid);
             giveMap.remove(gid);
         } else
-            throw new UnAuthorizedException(500);
+            throw new BuyNothingException("500");
     }
 
     public Optional<List<Give>> viewMyGives(String uid) {

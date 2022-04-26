@@ -14,6 +14,12 @@ public class Address {
         this.zip = zip;
     }
 
+    @Override
+    public String toString() {
+        return "{" + street + '\'' + zip + '\'' +
+                '}';
+    }
+
     @JsonProperty
     public String getStreet() {
         return street;

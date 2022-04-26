@@ -39,4 +39,8 @@ public class Give extends AskAndGiveCommon {
     public String getGid() {
         return gid;
     }
+
+    public void setGid(String gid) {
+        this.gid = gid;
+    }
 }

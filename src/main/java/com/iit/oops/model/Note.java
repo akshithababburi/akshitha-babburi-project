@@ -45,6 +45,10 @@ public class Note {
         return nid;
     }
 
+    public void setNid(String nid) {
+        this.nid = nid;
+    }
+
     public String getTo_type() {
         return to_type;
     }

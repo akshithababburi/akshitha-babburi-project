@@ -17,5 +17,5 @@ public interface AccountService {
 
     Account updateAccount(String uid, Account account) throws BuyNothingException;
 
-    List<Account> getAllAccounts(String keyword) throws BuyNothingException;
+    List<Account> getAllAccounts(String keyword, String start_date, String end_date) throws BuyNothingException;
 }

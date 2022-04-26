@@ -1,10 +1,8 @@
 package com.iit.oops.repository;
 
-import com.iit.oops.model.Give;
 import com.iit.oops.model.Note;
 import org.apache.commons.lang3.StringUtils;
 
-import java.time.LocalDate;
 import java.util.*;
 
 public class NoteRepository {
@@ -15,6 +13,10 @@ public class NoteRepository {
 
     public Optional<Note> createNote(Note note) {
         if (note.getTo_type().equalsIgnoreCase("note")) {
+
+            if (StringUtils.isBlank(note.getNid()))
+                note.setNid("" + noteMap.size() + 1);
+
             List<String> noteAndRelatedNotesList;
 
             if (noteAndRelatedNotesMap.containsKey(note.getTo_id()))

@@ -35,6 +35,10 @@ public class AskRepository {
 
 
     public Optional<Ask> createAsk(Ask ask, String uid) {
+
+        if (StringUtils.isBlank(ask.getAid()))
+            ask.setAid("" + askMap.size() + 1);
+
         List<String> aidList = null;
 
         if (uidAidMap.containsKey(uid))
@@ -53,7 +57,7 @@ public class AskRepository {
             askMap.put(aid, ask);
             return Optional.of(ask);
         } else
-            throw new BuyNothingException(500);
+            throw new BuyNothingException("500");
     }
 
 
@@ -64,7 +68,7 @@ public class AskRepository {
             uidAidMap.put(uid, askListAssociatedWithUid);
             askMap.remove(aid);
         } else
-            throw new BuyNothingException(500);
+            throw new BuyNothingException("500");
     }
 
     public Optional<Ask> deactivateAsk(String uid, String aid) throws BuyNothingException {
@@ -74,7 +78,7 @@ public class AskRepository {
             ask.setIs_active(false);
             return Optional.of(askMap.put(aid, ask));
         } else
-            throw new BuyNothingException(500);
+            throw new BuyNothingException("500");
     }
 
 

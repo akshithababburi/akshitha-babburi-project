@@ -1,7 +1,6 @@
 package com.iit.oodp;
 
 import com.iit.oops.exception.BuyNothingException;
-import com.iit.oops.exception.UnAuthorizedException;
 import com.iit.oops.model.Thanks;
 import com.iit.oops.repository.ThanksRepository;
 import com.iit.oops.service.ThanksService;
@@ -44,7 +43,7 @@ public class ThanksTest {
 
 
     @Test
-    public void testUpdateThanks() throws BuyNothingException, UnAuthorizedException {
+    public void testUpdateThanks() throws BuyNothingException {
         Thanks thanks = new Thanks("1", "1", "2", "Thanks for the tyre",
                 LocalDate.now());
         thanksService.createThanks(thanks, "1");
@@ -55,7 +54,7 @@ public class ThanksTest {
 
 
     @Test
-    public void testGetAllThanks() throws BuyNothingException, UnAuthorizedException {
+    public void testGetAllThanks() throws BuyNothingException {
         Thanks thanks = new Thanks("1", "1", "2", "Thanks for the tyre",
                 LocalDate.now());
         thanksService.createThanks(thanks, "1");
@@ -64,7 +63,7 @@ public class ThanksTest {
     }
 
     @Test
-    public void testGetAllThanksWithKeyWord() throws BuyNothingException, UnAuthorizedException {
+    public void testGetAllThanksWithKeyWord() throws BuyNothingException {
         Thanks thanks = new Thanks("1", "1", "2", "Thanks for the tyre",
                 LocalDate.now());
         thanksService.createThanks(thanks, "1");
@@ -74,7 +73,7 @@ public class ThanksTest {
 
 
     @Test
-    public void testGetAllThanksCreatedByUid() throws BuyNothingException, UnAuthorizedException {
+    public void testGetAllThanksCreatedByUid() throws BuyNothingException {
         Thanks thanks = new Thanks("1", "1", "2", "Thanks for the tyre",
                 LocalDate.now());
         thanksService.createThanks(thanks, "1");
@@ -83,7 +82,7 @@ public class ThanksTest {
     }
 
     @Test
-    public void testGetAllThanksReceivedByUid() throws BuyNothingException, UnAuthorizedException {
+    public void testGetAllThanksReceivedByUid() throws BuyNothingException {
         Thanks thanks = new Thanks("1", "1", "2", "Thanks for the tyre",
                 LocalDate.now());
         thanksService.createThanks(thanks, "1");

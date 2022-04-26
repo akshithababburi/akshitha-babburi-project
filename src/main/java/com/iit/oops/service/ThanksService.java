@@ -1,7 +1,6 @@
 package com.iit.oops.service;
 
 import com.iit.oops.exception.BuyNothingException;
-import com.iit.oops.exception.UnAuthorizedException;
 import com.iit.oops.model.Thanks;
 
 import java.util.List;
@@ -12,7 +11,7 @@ public interface ThanksService {
 
     Thanks createThanks(Thanks thanks, String uid) throws BuyNothingException;
 
-    Thanks updateThanks(Thanks thanks, String uid, String tid) throws BuyNothingException, UnAuthorizedException;
+    Thanks updateThanks(Thanks thanks, String uid, String tid) throws BuyNothingException;
 
     List<Thanks> getAllThanks(String keyword) throws BuyNothingException;
 

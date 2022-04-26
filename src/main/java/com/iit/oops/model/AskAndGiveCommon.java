@@ -30,6 +30,7 @@ public class AskAndGiveCommon {
 
     public AskAndGiveCommon() {
     }
+
     @JsonProperty
     public String getUid() {
         return uid;

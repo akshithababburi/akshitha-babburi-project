@@ -1,7 +1,6 @@
 package com.iit.oops.service.impl;
 
 import com.iit.oops.exception.BuyNothingException;
-import com.iit.oops.model.Give;
 import com.iit.oops.model.Note;
 import com.iit.oops.repository.NoteRepository;
 import com.iit.oops.service.NoteService;
@@ -23,7 +22,7 @@ public class NoteServiceImpl implements NoteService {
         if (noteFromDB.isPresent())
             return noteFromDB.get();
         else
-            throw new BuyNothingException(404, "Something went wrong");
+            throw new BuyNothingException("404", "Something went wrong");
     }
 
     @Override
@@ -32,7 +31,7 @@ public class NoteServiceImpl implements NoteService {
         if (noteFromDB.isPresent())
             return noteFromDB.get();
         else
-            throw new BuyNothingException(404, "Something went wrong");
+            throw new BuyNothingException("404", "Something went wrong");
     }
 
     @Override
@@ -46,7 +45,7 @@ public class NoteServiceImpl implements NoteService {
         if (noteFromDB.isPresent())
             return noteFromDB.get();
         else
-            throw new BuyNothingException(404, "Something went wrong");
+            throw new BuyNothingException("404", "Something went wrong");
     }
 
     @Override
@@ -55,6 +54,6 @@ public class NoteServiceImpl implements NoteService {
         if (noteFromDB.isPresent()) {
             return noteFromDB.get();
         }
-        throw new BuyNothingException(404, "Something went wrong");
+        throw new BuyNothingException("404", "Something went wrong");
     }
 }

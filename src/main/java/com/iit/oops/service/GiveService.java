@@ -1,7 +1,6 @@
 package com.iit.oops.service;
 
 import com.iit.oops.exception.BuyNothingException;
-import com.iit.oops.exception.UnAuthorizedException;
 import com.iit.oops.model.Give;
 
 import java.util.List;
@@ -12,11 +11,11 @@ public interface GiveService {
 
     Give createGive(Give give, String uid) throws BuyNothingException;
 
-    Give deactivateGive(String uid, String gid) throws BuyNothingException, UnAuthorizedException;
+    Give deactivateGive(String uid, String gid) throws BuyNothingException;
 
-    Give updateGive(Give give, String uid, String gid) throws UnAuthorizedException;
+    Give updateGive(Give give, String uid, String gid) throws BuyNothingException;
 
-    void deleteGive(String uid, String gid) throws UnAuthorizedException;
+    void deleteGive(String uid, String gid) throws BuyNothingException;
 
     List<Give> viewMyGives(String uid) throws BuyNothingException;
 

@@ -22,7 +22,7 @@ public class AskServiceImpl implements AskService {
         if (askFromRepo.isPresent()) {
             return askFromRepo.get();
         }
-        throw new BuyNothingException(404, "Sorry, there is no Ask with that id");
+        throw new BuyNothingException("404", "Sorry, there is no Ask with that id");
     }
 
     @Override
@@ -31,7 +31,7 @@ public class AskServiceImpl implements AskService {
         if (asksFromRepo.isPresent()) {
             return asksFromRepo.get();
         }
-        throw new BuyNothingException(404, "Something went wrong");
+        throw new BuyNothingException("404", "Something went wrong");
     }
 
     @Override
@@ -40,7 +40,7 @@ public class AskServiceImpl implements AskService {
         if (askFromRepo.isPresent()) {
             return askFromRepo.get();
         }
-        throw new BuyNothingException(404, "Something went wrong");
+        throw new BuyNothingException("404", "Something went wrong");
     }
 
     @Override
@@ -49,7 +49,7 @@ public class AskServiceImpl implements AskService {
         if (askFromRepo.isPresent()) {
             return askFromRepo.get();
         }
-        throw new BuyNothingException(404, "You are un authorized");
+        throw new BuyNothingException("404", "You are un authorized");
     }
 
     @Override
@@ -58,7 +58,7 @@ public class AskServiceImpl implements AskService {
         if (askFromRepo.isPresent()) {
             return askFromRepo.get();
         }
-        throw new BuyNothingException(404, "You are un authorized");
+        throw new BuyNothingException("404", "You are un authorized");
     }
 
     @Override
@@ -72,7 +72,7 @@ public class AskServiceImpl implements AskService {
         if (asksFromRepo.isPresent()) {
             return asksFromRepo.get();
         }
-        throw new BuyNothingException(404, "Something went wrong");
+        throw new BuyNothingException("404", "Something went wrong");
     }
 
     @Override
@@ -81,6 +81,6 @@ public class AskServiceImpl implements AskService {
         if (asksFromRepo.isPresent()) {
             return asksFromRepo.get();
         }
-        throw new BuyNothingException(404, "Something went wrong");
+        throw new BuyNothingException("404", "Something went wrong");
     }
 }

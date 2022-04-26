@@ -24,6 +24,10 @@ public class Ask extends AskAndGiveCommon {
         return aid;
     }
 
+    public void setAid(String aid) {
+        this.aid = aid;
+    }
+
     @Override
     public String toString() {
         return "Ask{" +

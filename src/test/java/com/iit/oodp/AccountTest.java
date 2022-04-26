@@ -10,7 +10,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class AccountTest {
 
@@ -28,7 +28,7 @@ public class AccountTest {
 
         Address address = new Address("S King Dr", "60181");
         Account account = new Account("1", "Akshitha Babburi",
-                address, "12345", "123.jpg", true, LocalDateTime.now());
+                address, "12345", "123.jpg", true, LocalDate.now());
 
         Assert.assertEquals(accountService.createAccount(account).getUid(), "1");
     }
@@ -38,7 +38,7 @@ public class AccountTest {
 
         Address address = new Address("S King Dr", "60181");
         Account account = new Account("1", "Akshitha Babburi",
-                address, "12345", "123.jpg", false, LocalDateTime.now());
+                address, "12345", "123.jpg", false, LocalDate.now());
 
         accountService.createAccount(account);
         Assert.assertEquals(accountService.activateAccount("1").isIs_active(), true);
@@ -50,7 +50,7 @@ public class AccountTest {
 
         Address address = new Address("S King Dr", "60181");
         Account account = new Account("1", "Akshitha",
-                address, "12345", "123.jpg", false, LocalDateTime.now());
+                address, "12345", "123.jpg", false, LocalDate.now());
 
         accountService.createAccount(account);
         Assert.assertEquals(accountService.getAccountById("1").getName(), "Akshitha");
@@ -61,12 +61,12 @@ public class AccountTest {
     public void testDeleteAccount() throws BuyNothingException {
 
         Address address = new Address("S King Dr", "60181");
-        Account account = new Account("1", "Akshitha",
-                address, "12345", "123.jpg", false, LocalDateTime.now());
+        Account account = new Account("4", "Akshitha",
+                address, "12345", "123.jpg", false, LocalDate.now());
 
         accountService.createAccount(account);
-        accountService.deleteAccount("1");
-        Assert.assertEquals(accountService.getAccountById("1").getUid(), null);
+        accountService.deleteAccount("4");
+        Assert.assertEquals(accountService.getAllAccounts(null, null, null).size(), 3);
     }
 
 
@@ -75,7 +75,7 @@ public class AccountTest {
 
         Address address = new Address("S King Dr", "60181");
         Account account = new Account("1", "Akshitha",
-                address, "12345", "123.jpg", false, LocalDateTime.now());
+                address, "12345", "123.jpg", false, LocalDate.now());
 
         accountService.createAccount(account);
         account.setIs_active(true);
@@ -87,12 +87,12 @@ public class AccountTest {
     public void testGetAllAccounts() throws BuyNothingException {
 
         Address address = new Address("S King Dr", "60181");
-        Account account = new Account("1", "Akshitha",
-                address, "12345", "123.jpg", false, LocalDateTime.now());
+        Account account = new Account("4", "Akshitha",
+                address, "12345", "123.jpg", false, LocalDate.now());
 
         accountService.createAccount(account);
 
-        Assert.assertEquals(accountService.getAllAccounts("").size(), 1);
+        Assert.assertEquals(accountService.getAllAccounts(null, null, null).size(), 4);
     }
 
 

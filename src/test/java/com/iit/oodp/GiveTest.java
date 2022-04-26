@@ -1,7 +1,6 @@
 package com.iit.oodp;
 
 import com.iit.oops.exception.BuyNothingException;
-import com.iit.oops.exception.UnAuthorizedException;
 import com.iit.oops.model.Give;
 import com.iit.oops.repository.GiveRepository;
 import com.iit.oops.service.GiveService;
@@ -46,7 +45,7 @@ public class GiveTest {
     }
 
     @Test
-    public void testDeleteGive() throws BuyNothingException, UnAuthorizedException {
+    public void testDeleteGive() throws BuyNothingException {
 
         Give give = new Give("1", "1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
@@ -59,7 +58,7 @@ public class GiveTest {
 
 
     @Test
-    public void testDeactivateGive() throws BuyNothingException, UnAuthorizedException {
+    public void testDeactivateGive() throws BuyNothingException {
 
         Give give = new Give("1", "1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
@@ -70,7 +69,7 @@ public class GiveTest {
     }
 
     @Test
-    public void testUpdateGive() throws BuyNothingException, UnAuthorizedException {
+    public void testUpdateGive() throws BuyNothingException {
 
         Give give = new Give("1", "1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
@@ -83,7 +82,7 @@ public class GiveTest {
     }
 
     @Test
-    public void testViewMyGives() throws BuyNothingException, UnAuthorizedException {
+    public void testViewMyGives() throws BuyNothingException {
 
         Give give = new Give("1", "1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
@@ -94,7 +93,7 @@ public class GiveTest {
     }
 
     @Test
-    public void testViewAllGives() throws BuyNothingException, UnAuthorizedException {
+    public void testViewAllGives() throws BuyNothingException {
 
         Give give = new Give("1", "1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());
@@ -109,7 +108,7 @@ public class GiveTest {
     }
 
     @Test
-    public void testViewAllGivesWithKeywords() throws BuyNothingException, UnAuthorizedException {
+    public void testViewAllGivesWithKeywords() throws BuyNothingException {
 
         Give give = new Give("1", "1", "give", "Drill Tool", LocalDate.now(), LocalDate.now(),
                 new String[]{"20301", "34232"}, true, LocalDateTime.now());

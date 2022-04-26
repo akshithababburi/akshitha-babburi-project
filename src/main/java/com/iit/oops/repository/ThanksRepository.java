@@ -1,6 +1,6 @@
 package com.iit.oops.repository;
 
-import com.iit.oops.exception.UnAuthorizedException;
+import com.iit.oops.exception.BuyNothingException;
 import com.iit.oops.model.Thanks;
 import org.apache.commons.lang3.StringUtils;
 
@@ -27,6 +27,9 @@ public class ThanksRepository {
         List<String> thanksCreatedList;
         List<String> thankToList;
 
+        if (StringUtils.isBlank(thanks.getTid()))
+            thanks.setTid("" + thanksMap.size() + 1);
+
         if (thanksCreatedUidMap.containsKey(thanks.getUid()))
             thanksCreatedList = thanksCreatedUidMap.get(thanks.getUid());
         else
@@ -46,14 +49,14 @@ public class ThanksRepository {
         return Optional.of(thanks);
     }
 
-    public Optional<Thanks> updateThanks(Thanks thanks, String uid, String tid) throws UnAuthorizedException {
+    public Optional<Thanks> updateThanks(Thanks thanks, String uid, String tid) throws BuyNothingException {
         List<String> thanksToUidList = thanksCreatedUidMap.get(uid);
         if (null != thanksToUidList && thanksToUidList.contains(tid)) {
             thanks.setTid(tid);
             thanksMap.put(tid, thanks);
             return Optional.of(thanks);
         } else
-            throw new UnAuthorizedException(500);
+            throw new BuyNothingException("500");
     }
 
     public Optional<List<Thanks>> getAllThanks(String keyword) {

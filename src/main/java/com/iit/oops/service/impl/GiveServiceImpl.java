@@ -1,7 +1,6 @@
 package com.iit.oops.service.impl;
 
 import com.iit.oops.exception.BuyNothingException;
-import com.iit.oops.exception.UnAuthorizedException;
 import com.iit.oops.model.Give;
 import com.iit.oops.repository.GiveRepository;
 import com.iit.oops.service.GiveService;
@@ -24,7 +23,7 @@ public class GiveServiceImpl implements GiveService {
         if (giveFromRepo.isPresent()) {
             return giveFromRepo.get();
         }
-        throw new BuyNothingException(404, "Sorry, there is no Ask with that id");
+        throw new BuyNothingException("404", "Sorry, there is no Ask with that id");
     }
 
     @Override
@@ -33,29 +32,29 @@ public class GiveServiceImpl implements GiveService {
         if (giveFromRepo.isPresent()) {
             return giveFromRepo.get();
         }
-        throw new BuyNothingException(404, "Something went wrong");
+        throw new BuyNothingException("404", "Something went wrong");
     }
 
     @Override
-    public Give deactivateGive(String uid, String gid) throws BuyNothingException, UnAuthorizedException {
+    public Give deactivateGive(String uid, String gid) throws BuyNothingException {
         Optional<Give> giveFromRepo = giveRepository.deactivateGive(gid, uid);
         if (giveFromRepo.isPresent()) {
             return giveFromRepo.get();
         }
-        throw new UnAuthorizedException(404, "You are un authorized");
+        throw new BuyNothingException("404", "You are un authorized");
     }
 
     @Override
-    public Give updateGive(Give give, String uid, String gid) throws UnAuthorizedException {
+    public Give updateGive(Give give, String uid, String gid) throws BuyNothingException {
         Optional<Give> giveFromRepo = giveRepository.updateGive(give, uid, gid);
         if (giveFromRepo.isPresent()) {
             return giveFromRepo.get();
         }
-        throw new UnAuthorizedException(404, "You are un authorized");
+        throw new BuyNothingException("404", "You are un authorized");
     }
 
     @Override
-    public void deleteGive(String uid, String gid) throws UnAuthorizedException {
+    public void deleteGive(String uid, String gid) throws BuyNothingException {
         giveRepository.deleteGive(uid, gid);
     }
 
@@ -65,7 +64,7 @@ public class GiveServiceImpl implements GiveService {
         if (givesFromRepo.isPresent()) {
             return givesFromRepo.get();
         }
-        throw new BuyNothingException(404, "Something went wrong");
+        throw new BuyNothingException("404", "Something went wrong");
     }
 
     @Override
@@ -74,6 +73,6 @@ public class GiveServiceImpl implements GiveService {
         if (givesFromRepo.isPresent()) {
             return givesFromRepo.get();
         }
-        throw new BuyNothingException(404, "Something went wrong");
+        throw new BuyNothingException("404", "Something went wrong");
     }
 }

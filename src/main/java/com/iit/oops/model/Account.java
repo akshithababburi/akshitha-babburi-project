@@ -2,10 +2,10 @@ package com.iit.oops.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Account {
-    private final LocalDateTime date_created = LocalDateTime.now();
+    private LocalDate date_created;
     private String uid;
     private String name;
     private Address address;
@@ -14,13 +14,15 @@ public class Account {
     private boolean is_active;
 
 
-    public Account(String uid, String name, Address address, String phone, String picture, boolean is_active, LocalDateTime date_created) {
+    public Account(String uid, String name, Address address, String phone, String picture, boolean is_active, LocalDate date_created) {
         this.uid = uid;
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.picture = picture;
         this.is_active = is_active;
+        if (date_created == null || date_created.equals(""))
+            this.date_created = LocalDate.now();
     }
 
     public Account() {
@@ -66,7 +68,7 @@ public class Account {
     }
 
     @JsonProperty
-    public LocalDateTime getDate_created() {
+    public LocalDate getDate_created() {
         return date_created;
     }
 
@@ -75,7 +77,7 @@ public class Account {
         return "Account{" +
                 "" + uid + '\'' +
                 "" + name + '\'' +
-                "" + address +
+                "" + address.toString() +
                 "" + phone + '\'' +
                 "" + picture + '\'' +
                 "" + is_active +

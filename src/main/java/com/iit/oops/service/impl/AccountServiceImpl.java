@@ -22,7 +22,7 @@ public class AccountServiceImpl implements AccountService {
         if (accountFromRepo.isPresent()) {
             return accountFromRepo.get();
         }
-        throw new BuyNothingException(404, "Sorry there is not Account with that id");
+        throw new BuyNothingException("404", "Sorry there is not Account with that id");
     }
 
     @Override
@@ -36,7 +36,7 @@ public class AccountServiceImpl implements AccountService {
         if (accountFromRepo.isPresent()) {
             return accountFromRepo.get();
         }
-        throw new BuyNothingException(404, "Something went wrong");
+        throw new BuyNothingException("404", "Something went wrong");
     }
 
     @Override
@@ -50,15 +50,15 @@ public class AccountServiceImpl implements AccountService {
         if (accountFromRepo.isPresent()) {
             return accountFromRepo.get();
         }
-        throw new BuyNothingException(404, "Something went wrong");
+        throw new BuyNothingException("404", "Something went wrong");
     }
 
     @Override
-    public List<Account> getAllAccounts(String keyword) throws BuyNothingException {
-        Optional<List<Account>> accountsFromRepo = accountRepository.getAllAccounts(keyword);
+    public List<Account> getAllAccounts(String keyword, String start_date, String end_date) throws BuyNothingException {
+        Optional<List<Account>> accountsFromRepo = accountRepository.getAllAccounts(keyword, start_date, end_date);
         if (accountsFromRepo.isPresent()) {
             return accountsFromRepo.get();
         }
-        throw new BuyNothingException(404, "Something went wrong");
+        throw new BuyNothingException("404", "Something went wrong");
     }
 }

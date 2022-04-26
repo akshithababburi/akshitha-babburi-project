@@ -1,7 +1,6 @@
 package com.iit.oops.service.impl;
 
 import com.iit.oops.exception.BuyNothingException;
-import com.iit.oops.exception.UnAuthorizedException;
 import com.iit.oops.model.Thanks;
 import com.iit.oops.repository.ThanksRepository;
 import com.iit.oops.service.ThanksService;
@@ -24,7 +23,7 @@ public class ThanksServiceImpl implements ThanksService {
         if (thanksFromRepo.isPresent()) {
             return thanksFromRepo.get();
         }
-        throw new BuyNothingException(404, "Sorry, there is no Thanks with that id");
+        throw new BuyNothingException("404", "Sorry, there is no Thanks with that id");
     }
 
     @Override
@@ -34,17 +33,17 @@ public class ThanksServiceImpl implements ThanksService {
         if (thanksFromRepo.isPresent()) {
             return thanksFromRepo.get();
         }
-        throw new BuyNothingException(404, "Something has occured");
+        throw new BuyNothingException("404", "Something has occured");
     }
 
     @Override
-    public Thanks updateThanks(Thanks thanks, String uid, String tid) throws BuyNothingException, UnAuthorizedException {
+    public Thanks updateThanks(Thanks thanks, String uid, String tid) throws BuyNothingException {
         thanks.setUid(uid);
         Optional<Thanks> thanksFromRepo = thanksRepository.updateThanks(thanks, uid, tid);
         if (thanksFromRepo.isPresent()) {
             return thanksFromRepo.get();
         }
-        throw new BuyNothingException(404, "you are unauthorized");
+        throw new BuyNothingException("404", "you are unauthorized");
     }
 
     @Override
@@ -53,7 +52,7 @@ public class ThanksServiceImpl implements ThanksService {
         if (thanksFromRepo.isPresent()) {
             return thanksFromRepo.get();
         }
-        throw new BuyNothingException(404, "Something went wrong");
+        throw new BuyNothingException("404", "Something went wrong");
     }
 
     @Override
@@ -62,7 +61,7 @@ public class ThanksServiceImpl implements ThanksService {
         if (thanksFromRepo.isPresent()) {
             return thanksFromRepo.get();
         }
-        throw new BuyNothingException(404, "Something went wrong");
+        throw new BuyNothingException("404", "Something went wrong");
     }
 
     @Override
@@ -71,6 +70,6 @@ public class ThanksServiceImpl implements ThanksService {
         if (thanksFromRepo.isPresent()) {
             return thanksFromRepo.get();
         }
-        throw new BuyNothingException(404, "Something went wrong");
+        throw new BuyNothingException("404", "Something went wrong");
     }
 }
