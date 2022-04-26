@@ -102,4 +102,16 @@ public class AskTest {
         Assert.assertEquals(askService.searchAsks("car", null, null).size(), 1);
     }
 
+
+    @Test
+    public void testGetAsksWithKeywordAndDates() throws BuyNothingException {
+
+        Ask ask = new Ask("1", "1", "ask", "car tyre", LocalDate.now(), LocalDate.now(),
+                new String[]{"20301", "34232"}, true, LocalDateTime.now());
+        askService.createAsk(ask, "1");
+
+        Assert.assertEquals(askService.searchAsks("car",
+                "31-Dec-2021", "31-Dec-2022").size(), 1);
+    }
+
 }

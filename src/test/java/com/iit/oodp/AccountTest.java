@@ -96,4 +96,11 @@ public class AccountTest {
     }
 
 
+    @Test
+    public void testGetAllAccountsWithKeywordAndDates() throws BuyNothingException {
+        Assert.assertEquals(accountService.getAllAccounts("main",
+                "31-Dec-2021", "31-Dec-2022").size(), 1);
+    }
+
+
 }

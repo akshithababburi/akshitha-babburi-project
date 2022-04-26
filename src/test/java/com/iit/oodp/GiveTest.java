@@ -119,6 +119,6 @@ public class GiveTest {
         giveService.createGive(give, "1");
         giveService.createGive(give2, "1");
 
-        Assert.assertTrue(giveService.getAllGives("Saw", "" + LocalDate.now(), "" + LocalDate.now()).size() > 0);
+        Assert.assertTrue(giveService.getAllGives("Saw", "31-Jan-2021", "31-Dec-2022" ).size() > 0);
     }
 }

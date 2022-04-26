@@ -1,10 +1,12 @@
 package com.iit.oops.repository;
 
 import com.iit.oops.exception.BuyNothingException;
+import com.iit.oops.model.Account;
 import com.iit.oops.model.Ask;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class AskRepository {
@@ -89,29 +91,35 @@ public class AskRepository {
 
     public Optional<List<Ask>> searchAsks(String keyword, String start_date, String end_date) {
         if (StringUtils.isNotEmpty(keyword) || StringUtils.isNotEmpty(start_date) || StringUtils.isNotEmpty(end_date)) {
-            List<Ask> askListFromDb = new ArrayList<>(askMap.values());
+            List<Ask> askListFromDB = new ArrayList<>(askMap.values());
             List<Ask> askListFiltered = new ArrayList<>();
+
             if (StringUtils.isNotEmpty(keyword)) {
-                for (Ask ask : askListFromDb) {
-                    if (ask.toString().contains(keyword))
+                for (Ask ask : askListFromDB) {
+                    if (ask.toString().toLowerCase().contains(keyword.toLowerCase()))
                         askListFiltered.add(ask);
                 }
             }
+
             if (StringUtils.isNotEmpty(start_date)) {
-                if (askListFiltered.isEmpty())
-                    askListFiltered = askListFromDb;
-                for (Ask ask : askListFiltered) {
-                    LocalDate startDate = LocalDate.parse(start_date);
+                LocalDate startDate = LocalDate.parse(start_date, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+                if (!askListFiltered.isEmpty()) {
+                    askListFromDB = askListFiltered;
+                    askListFiltered = new ArrayList<>();
+                }
+                for (Ask ask : askListFromDB) {
                     if (ask.getStart_date().isAfter(startDate))
                         askListFiltered.add(ask);
                 }
             }
 
             if (StringUtils.isNotEmpty(end_date)) {
-                if (askListFiltered.isEmpty())
-                    askListFiltered = askListFromDb;
-                for (Ask ask : askListFiltered) {
-                    LocalDate endDate = LocalDate.parse(end_date);
+                LocalDate endDate = LocalDate.parse(end_date, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+                if (!askListFiltered.isEmpty()) {
+                    askListFromDB = askListFiltered;
+                    askListFiltered = new ArrayList<>();
+                }
+                for (Ask ask : askListFromDB) {
                     if (ask.getEnd_date().isBefore(endDate))
                         askListFiltered.add(ask);
                 }

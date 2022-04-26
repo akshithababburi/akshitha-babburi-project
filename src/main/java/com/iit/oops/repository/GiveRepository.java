@@ -1,10 +1,12 @@
 package com.iit.oops.repository;
 
 import com.iit.oops.exception.BuyNothingException;
+import com.iit.oops.model.Ask;
 import com.iit.oops.model.Give;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class GiveRepository {
@@ -81,27 +83,33 @@ public class GiveRepository {
         if (StringUtils.isNotEmpty(keyword) || StringUtils.isNotEmpty(start_date) || StringUtils.isNotEmpty(end_date)) {
             List<Give> giveListFromDb = new ArrayList<>(giveMap.values());
             List<Give> giveListFiltered = new ArrayList<>();
+
             if (StringUtils.isNotEmpty(keyword)) {
                 for (Give give : giveListFromDb) {
-                    if (give.toString().contains(keyword))
+                    if (give.toString().toLowerCase().contains(keyword.toLowerCase()))
                         giveListFiltered.add(give);
                 }
             }
+
             if (StringUtils.isNotEmpty(start_date)) {
-                if (giveListFiltered.isEmpty())
-                    giveListFiltered = giveListFromDb;
-                for (Give give : giveListFiltered) {
-                    LocalDate startDate = LocalDate.parse(start_date);
+                LocalDate startDate = LocalDate.parse(start_date, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+                if (!giveListFiltered.isEmpty()) {
+                    giveListFromDb = giveListFiltered;
+                    giveListFiltered = new ArrayList<>();
+                }
+                for (Give give : giveListFromDb) {
                     if (give.getStart_date().isAfter(startDate))
                         giveListFiltered.add(give);
                 }
             }
 
             if (StringUtils.isNotEmpty(end_date)) {
-                if (giveListFiltered.isEmpty())
-                    giveListFiltered = giveListFromDb;
-                for (Give give : giveListFiltered) {
-                    LocalDate endDate = LocalDate.parse(end_date);
+                LocalDate endDate = LocalDate.parse(end_date, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+                if (!giveListFiltered.isEmpty()) {
+                    giveListFromDb = giveListFiltered;
+                    giveListFiltered = new ArrayList<>();
+                }
+                for (Give give : giveListFromDb) {
                     if (give.getEnd_date().isBefore(endDate))
                         giveListFiltered.add(give);
                 }
@@ -110,5 +118,4 @@ public class GiveRepository {
         }
         return Optional.of(new ArrayList<>(giveMap.values()));
     }
-
 }

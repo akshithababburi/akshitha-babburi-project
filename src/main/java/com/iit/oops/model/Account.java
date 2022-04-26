@@ -21,8 +21,7 @@ public class Account {
         this.phone = phone;
         this.picture = picture;
         this.is_active = is_active;
-        if (date_created == null || date_created.equals(""))
-            this.date_created = LocalDate.now();
+        this.date_created = date_created;
     }
 
     public Account() {
@@ -36,6 +35,13 @@ public class Account {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public void setDate_created(LocalDate date_created) {
+        if (date_created == null)
+            this.date_created = LocalDate.now();
+        else
+            this.date_created = date_created;
     }
 
     @JsonProperty

@@ -5,7 +5,9 @@ import com.iit.oops.model.Account;
 import com.iit.oops.model.Address;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.swing.text.DateFormatter;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class AccountRepository {
@@ -62,21 +64,26 @@ public class AccountRepository {
                         accountListFiltered.add(account);
                 }
             }
+
             if (StringUtils.isNotEmpty(start_date)) {
-                if (accountListFiltered.isEmpty())
-                    accountListFiltered = accountListFromDB;
-                for (Account account : accountListFiltered) {
-                    LocalDate startDate = LocalDate.parse(start_date);
+                LocalDate startDate = LocalDate.parse(start_date, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+                if (!accountListFiltered.isEmpty()) {
+                    accountListFromDB = accountListFiltered;
+                    accountListFiltered = new ArrayList<>();
+                }
+                for (Account account : accountListFromDB) {
                     if (account.getDate_created().isAfter(startDate))
                         accountListFiltered.add(account);
                 }
             }
 
             if (StringUtils.isNotEmpty(end_date)) {
-                if (accountListFiltered.isEmpty())
-                    accountListFiltered = accountListFromDB;
-                for (Account account : accountListFiltered) {
-                    LocalDate endDate = LocalDate.parse(end_date);
+                LocalDate endDate = LocalDate.parse(end_date, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+                if (!accountListFiltered.isEmpty()) {
+                    accountListFromDB = accountListFiltered;
+                    accountListFiltered = new ArrayList<>();
+                }
+                for (Account account : accountListFromDB) {
                     if (account.getDate_created().isBefore(endDate))
                         accountListFiltered.add(account);
                 }
